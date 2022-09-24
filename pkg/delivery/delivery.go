@@ -31,7 +31,7 @@ type reqUpdate struct {
 func (handler *HTTPOdontologo) GetAll(c *gin.Context) {
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 
-	list, err := handler.odontologoUCI.GetAll()
+	list, err := handler.odontologoUCI.FindAll()
 	if err != nil {
 		log.Error().Msg(err.Error())
 		c.JSON(
@@ -83,7 +83,7 @@ func (handler *HTTPOdontologo) AddData(c *gin.Context) {
 	}
 
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
-	err := handler.odontologoUCI.InsertData(reqJSON.Nombre, reqJSON.Apellido, reqJSON.Matricula)
+	err := handler.odontologoUCI.CreateData(reqJSON.Nombre, reqJSON.Apellido, reqJSON.Matricula)
 	if err != nil {
 		log.Error().Msg(err.Error())
 		c.JSON(
@@ -123,7 +123,7 @@ func (handler *HTTPOdontologo) GetByID(c *gin.Context) {
 		return
 	}
 
-	data, err := handler.odontologoUCI.GetByID(id)
+	data, err := handler.odontologoUCI.FindByID(id)
 	if err != nil {
 		log.Error().Msg(err.Error())
 		c.JSON(
@@ -163,7 +163,7 @@ func (handler *HTTPOdontologo) EditData(c *gin.Context) {
 	}
 
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
-	err := handler.odontologoUCI.EditData(reqJSON.ID, reqJSON.Nombre, reqJSON.Apellido, reqJSON.Matricula)
+	err := handler.odontologoUCI.UpdateData(reqJSON.ID, reqJSON.Nombre, reqJSON.Apellido, reqJSON.Matricula)
 	if err != nil {
 		log.Error().Msg(err.Error())
 		c.JSON(

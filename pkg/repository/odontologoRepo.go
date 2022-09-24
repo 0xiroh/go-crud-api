@@ -1,8 +1,8 @@
 package repository
 
 import (
-	odontologoModel "github.com/0xiroh/pkg/models/odontologo"
-	odontologoI "github.com/0xiroh/pkg/interface"
+	odontologoModel "github.com/0xiroh/go-crud-api/pkg/models/odontologo"
+	odontologoI "github.com/0xiroh/go-crud-api/pkg/interface/odontologoInterface"
 	"errors"
 
 	"github.com/jinzhu/gorm"
